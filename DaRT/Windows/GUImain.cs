@@ -2432,7 +2432,7 @@ namespace DaRT
                             {
                                 command.Dispose();
 
-                                String url = "http://www.ipinfodb.com/img/flags/" + location.ToLower() + ".gif";
+                                String url = "http://www.iplocation.net/assets/images/flags/" + location.ToLower() + ".gif";
 
                                 HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
                                 webRequest.Proxy = proxy;
@@ -2481,7 +2481,7 @@ namespace DaRT
                                 }
                                 else
                                 {
-                                    String url = "http://www.ipinfodb.com/img/flags/" + location.ToLower() + ".gif";
+                                    String url = "http://www.iplocation.net/assets/images/flags/" + location.ToLower() + ".gif";
 
                                     HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
                                     webRequest.Proxy = proxy;
