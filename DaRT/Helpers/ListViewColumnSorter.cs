@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Windows.Forms;
 
 /// <summary>
@@ -50,7 +51,19 @@ public class ListViewColumnSorter : IComparer
         listviewY = (ListViewItem)y;
 
         // Compare the two items
-        compareResult = ObjectCompare.Compare(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
+        string xValue = listviewX.SubItems[ColumnToSort].Text;
+        string yValue = listviewY.SubItems[ColumnToSort].Text;
+        int xNumber = 0, yNumber = 0;
+        bool parsed = int.TryParse(xValue, out xNumber);
+        parsed = parsed && int.TryParse(yValue, out yNumber);
+        if (parsed)
+        {
+            compareResult = xNumber.CompareTo(yNumber);
+        }
+        else
+        {
+            compareResult = CompareTwoObjects(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
+        }
 
         // Calculate correct return value based on object comparison
         if (OrderOfSort == SortOrder.Ascending)
@@ -68,6 +81,39 @@ public class ListViewColumnSorter : IComparer
             // Return '0' to indicate they are equal
             return 0;
         }
+    }
+
+    //Compare object depend upon their types.
+    private int CompareTwoObjects(object x, object y)
+    {
+        int res = 0;
+        if (x.GetType() == typeof(string))
+        {
+            res = Comparer.Default.Compare(x, y);
+        }
+        else if (x.GetType() == typeof(int))
+        {
+            int t1 = (int)x;
+            int t2 = (int)y;
+            if (t1 == t2)
+                res = 0;
+            else if (t1 < t2)
+                res = -1;
+            else
+                res = 1;
+        }
+        else if (x.GetType() == typeof(DateTime))
+        {
+            DateTime d1 = (DateTime)x;
+            DateTime d2 = (DateTime)y;
+            if (d1 == d2)
+                res = 0;
+            else if (d1 < d2)
+                res = -1;
+            else
+                res = 1;
+        }
+        return res;
     }
 
     /// <summary>
