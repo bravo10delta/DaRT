@@ -12,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="bannerImage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://cache.www.gametracker.com/server_info/{0}/b_350_20_FFAD41_E98100_000000_591F11.png</Value>
+      <Value Profile="(Default)">http://cache.www.gametracker.com/server_info/{0}/b_350_20_4e5987_202743_f8c77e_ffffff.png</Value>
     </Setting>
     <Setting Name="bannerUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://www.gametracker.com/server_info/{0}/</Value>
