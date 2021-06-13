@@ -38,6 +38,8 @@ namespace DaRT
 
             _buffer = new List<string>();
 
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
             InitializeComponent();
         }
 
