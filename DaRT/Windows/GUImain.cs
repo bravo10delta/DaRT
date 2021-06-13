@@ -1832,10 +1832,11 @@ namespace DaRT
         {
             try
             {
-                WebClient client = new WebClient();
+                /*WebClient client = new WebClient();
                 client.Headers.Add("user-agent", "DaRT " + version);
                 String request = client.DownloadString("http://forum.swisscraft.eu/DaRT/news.txt");
-                client.Dispose();
+                client.Dispose();*/
+                String request = "Custom version by Bravo10Delta;https://github.com/bravo10delta/DaRT";
                 String[] split = request.Split(';');
                 String news = split[0];
                 String url = "";
