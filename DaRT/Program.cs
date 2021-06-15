@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Net;
 
 namespace DaRT
 {
@@ -95,7 +95,7 @@ namespace DaRT
                     {
                         output = arg.Split(new char[] { '=' }, 2, StringSplitOptions.RemoveEmptyEntries)[1];
                     }
-                    else if(arg.StartsWith("-close"))
+                    else if (arg.StartsWith("-close"))
                     {
                         close = true;
                     }
@@ -326,7 +326,7 @@ namespace DaRT
                 {
                     Write("You need to run atleast one command or one script.");
                 }
-                
+
                 rcon.Disconnect();
                 if (writer != null)
                 {

@@ -1,19 +1,18 @@
-﻿using System;
+﻿using DaRT.Properties;
+using Mono.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using Mono.Data.Sqlite;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Xml;
-using DaRT.Properties;
-using System.Net.Sockets;
 
 namespace DaRT
 {
@@ -108,7 +107,7 @@ namespace DaRT
                     command.ExecuteNonQuery();
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -200,7 +199,7 @@ namespace DaRT
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 using (StreamWriter writer = new StreamWriter("migrate_error.txt"))
                 {
@@ -545,7 +544,7 @@ namespace DaRT
                     gui.Comment(this, connection, name, guid, "player database");
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("An error occurred, please try again.", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -587,7 +586,7 @@ namespace DaRT
                 GUImessage gui = new GUImessage(this, id, name);
                 gui.ShowDialog();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("An error occurred, please try again.", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -605,7 +604,7 @@ namespace DaRT
                 GUIkick gui = new GUIkick(this, id, name);
                 gui.ShowDialog();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("An error occurred, please try again.", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -625,7 +624,7 @@ namespace DaRT
                 rcon.Pending = name;
                 gui.ShowDialog();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("An error occurred, please try again.", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -641,12 +640,12 @@ namespace DaRT
                 String ip = item.SubItems[2].Text;
                 String guid = item.SubItems[4].Text;
                 String name = item.SubItems[5].Text;
-                
+
                 rcon.Pending = name;
                 Ban ban = new Ban(id, name, guid, "", Settings.Default.quickBan, "Banned for " + Settings.Default.quickBan + " minute(s).", true);
                 rcon.Ban(ban);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("An error occurred, please try again.", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -664,7 +663,7 @@ namespace DaRT
                 GUIban gui = new GUIban(rcon, 0, name, guid, "", false);
                 gui.ShowDialog();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("An error occurred, please try again.", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -675,7 +674,7 @@ namespace DaRT
         {
             // Getting selected item from cache
             ListViewItem item = bansList.SelectedItems[0];
-            
+
             // Getting ban ID
             String id = item.SubItems[0].Text;
 
@@ -693,7 +692,7 @@ namespace DaRT
         }
         private void expired_click(object sender, EventArgs args)
         {
-            for(int i = bans.Count - 1; i >= 0; i--)
+            for (int i = bans.Count - 1; i >= 0; i--)
             {
                 if (bans[i].time.Equals("expired"))
                     rcon.unban(bans[i].number);
@@ -712,7 +711,7 @@ namespace DaRT
                 String name = item.SubItems[5].Text;
                 Clipboard.SetText(ip + "    " + guid + "    " + name);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -728,7 +727,7 @@ namespace DaRT
                 String ip = item.SubItems[2].Text;
                 Clipboard.SetText(ip);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -744,7 +743,7 @@ namespace DaRT
                 String guid = item.SubItems[4].Text;
                 Clipboard.SetText(guid);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Debug, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -760,7 +759,7 @@ namespace DaRT
                 String name = item.SubItems[5].Text;
                 Clipboard.SetText(name);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Debug, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -777,7 +776,7 @@ namespace DaRT
                 String guid = item.SubItems[1].Text;
                 Clipboard.SetText(guid);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Debug, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -796,7 +795,7 @@ namespace DaRT
                 String name = item.SubItems[4].Text;
                 Clipboard.SetText(ip + "    " + guid + "    " + name);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Debug, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -812,7 +811,7 @@ namespace DaRT
                 String ip = item.SubItems[1].Text;
                 Clipboard.SetText(ip);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Debug, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -828,7 +827,7 @@ namespace DaRT
                 String guid = item.SubItems[3].Text;
                 Clipboard.SetText(guid);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Debug, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -844,7 +843,7 @@ namespace DaRT
                 String name = item.SubItems[4].Text;
                 Clipboard.SetText(name);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Error while accessing clipboard!", LogType.Debug, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -934,24 +933,24 @@ namespace DaRT
                 // Check if text is empty
                 if (input.Text != "")
                 {
-                        // Say it in global chat if option is specified...
-                        if (options.SelectedItem.ToString() == "Say Global")
+                    // Say it in global chat if option is specified...
+                    if (options.SelectedItem.ToString() == "Say Global")
+                    {
+                        // Check if more then 3 characters were entered
+                        if (input.Text.Length > 3)
                         {
-                            // Check if more then 3 characters were entered
-                            if (input.Text.Length > 3)
-                            {
-                                rcon.say(input.Text);
-                            }
-                            else
-                                this.Log("You need to enter atleast 4 characters.", LogType.Console, false);
+                            rcon.say(input.Text);
                         }
-                        // ... or send it as command if in console mode
-                        else if (options.SelectedItem.ToString() == "Console")
-                        {
-                            if (!input.Text.StartsWith("players") && !input.Text.StartsWith("bans") && !input.Text.StartsWith("admins"))
-                                rcon.execute(input.Text);
-                        }
-                        input.Clear();
+                        else
+                            this.Log("You need to enter atleast 4 characters.", LogType.Console, false);
+                    }
+                    // ... or send it as command if in console mode
+                    else if (options.SelectedItem.ToString() == "Console")
+                    {
+                        if (!input.Text.StartsWith("players") && !input.Text.StartsWith("bans") && !input.Text.StartsWith("admins"))
+                            rcon.execute(input.Text);
+                    }
+                    input.Clear();
                 }
                 // Setting event to handled
                 args.Handled = true;
@@ -975,7 +974,7 @@ namespace DaRT
                     String url = String.Format(Settings.Default.bannerUrl, ip);
                     Process.Start(url);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     this.Log("An error occurred, please try again.", LogType.Console, false);
                     this.Log(e.Message, LogType.Debug, false);
@@ -1025,7 +1024,7 @@ namespace DaRT
                 Settings.Default["playerSizes"] = sizes;
                 Settings.Default.Save();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -1036,7 +1035,7 @@ namespace DaRT
                 connection.Close();
                 connection.Dispose();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -1146,14 +1145,14 @@ namespace DaRT
                             playerDBList.Items.Add(item);
                         }
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         this.Log(e.Message, LogType.Debug, false);
                         this.Log(e.StackTrace, LogType.Debug, false);
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("An error occurred, please try again.", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -1345,7 +1344,7 @@ namespace DaRT
                     playerContextMenu.Hide();
                     timer.Stop();
                     refreshTimer = Settings.Default.interval;
-                        nextRefresh.Value = 0;
+                    nextRefresh.Value = 0;
                     lastRefresh.Text = "Refreshing...";
                     seconds = 0;
                     minutes = 0;
@@ -1478,7 +1477,7 @@ namespace DaRT
                                     }
                                 }
                             }
-                            catch(Exception e)
+                            catch (Exception e)
                             {
                                 this.Log(e.Message, LogType.Debug, false);
                                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -1495,7 +1494,7 @@ namespace DaRT
 
                 pendingPlayers = false;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Player request timed out! (Critical error)", LogType.Console, false);
                 this.Log(e.Message, LogType.Debug, false);
@@ -1587,11 +1586,11 @@ namespace DaRT
 
                                         bool hasLetters = false;
                                         bool hasDigits = false;
-                                        foreach(char character in ipguid)
+                                        foreach (char character in ipguid)
                                         {
-                                            if(char.IsLetter(character))
+                                            if (char.IsLetter(character))
                                                 hasLetters = true;
-                                            else if(char.IsDigit(character))
+                                            else if (char.IsDigit(character))
                                                 hasDigits = true;
                                         }
 
@@ -1605,7 +1604,7 @@ namespace DaRT
                                     {
                                         String ipguid = items[0];
                                         String time = items[1];
-                                        
+
                                         if (time == "-1")
                                             time = "perm";
 
@@ -1685,7 +1684,7 @@ namespace DaRT
                 }
                 pendingBans = false;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 if (Settings.Default.dartbrs)
                 {
@@ -1711,7 +1710,7 @@ namespace DaRT
                     search.Text = "";
                     searchButton.Text = "Search";
                 });
-                
+
                 // Select everything from the player database
                 List<Player> playersDB = new List<Player>();
                 using (command = new SqliteCommand("SELECT id, lastip, lastseen, guid, name, lastseenon FROM players ORDER BY id ASC", connection))
@@ -1769,7 +1768,7 @@ namespace DaRT
 
                 pendingDatabase = false;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -1813,7 +1812,7 @@ namespace DaRT
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -1849,7 +1848,7 @@ namespace DaRT
                     });
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -1934,7 +1933,7 @@ namespace DaRT
 
                     request.ContentType = "application/x-www-form-urlencoded";
                     request.ContentLength = postBytes.Length;
-                    
+
                     Stream requestStream = request.GetRequestStream();
                     requestStream.Write(postBytes, 0, postBytes.Length);
                     requestStream.Close();
@@ -1965,7 +1964,7 @@ namespace DaRT
 
                     request.ContentType = "application/x-www-form-urlencoded";
                     request.ContentLength = postBytes.Length;
-                    
+
                     Stream requestStream = request.GetRequestStream();
                     requestStream.Write(postBytes, 0, postBytes.Length);
                     requestStream.Close();
@@ -2008,7 +2007,7 @@ namespace DaRT
 
                 this.Log("Player sync complete.", LogType.Console, false);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log("Something went wrong.", LogType.Console, false);
                 this.Log("Restoring backup...", LogType.Console, false);
@@ -2273,7 +2272,7 @@ namespace DaRT
                 if (item.Type == LogType.Console)
                     color = this.GetColor("#000000");
 
-                else if(item.Type == LogType.GlobalChat)
+                else if (item.Type == LogType.GlobalChat)
                     color = this.GetColor("#474747");
                 else if (item.Type == LogType.SideChat)
                     color = this.GetColor("#19B5D1");
@@ -2341,7 +2340,7 @@ namespace DaRT
 
                     if (isChat && !Settings.Default.colorChat)
                         all.SelectionColor = this.GetColor("#000000");
-                    else if(isFilter && !Settings.Default.colorFilters)
+                    else if (isFilter && !Settings.Default.colorFilters)
                         all.SelectionColor = this.GetColor("#000000");
                     else
                         all.SelectionColor = color;
@@ -2402,7 +2401,7 @@ namespace DaRT
         {
             adminCounter.Text = "Admins: " + amount;
         }
-        
+
         public Location GetLocation(IPAddress ip)
         {
             try
@@ -2412,7 +2411,7 @@ namespace DaRT
                     command.Parameters.Clear();
                     command.Parameters.Add(new SqliteParameter("@lastip", ip));
 
-                    using(SqliteDataReader reader = command.ExecuteReader())
+                    using (SqliteDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -2497,7 +2496,7 @@ namespace DaRT
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -2522,7 +2521,7 @@ namespace DaRT
 
                 return location;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -3135,10 +3134,10 @@ namespace DaRT
                 if (File.Exists("data/db/players.db"))
                     MessageBox.Show("This appears to be the first start of the new version of DaRT.\r\nDaRT has found an existing database and will now migrate all of your data to the new format.\r\nA backup of your existing databases will be saved.\r\n\r\nPlease continue to start the migration process.\r\n(This may take a while depending on the size of the database)", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            UpdateDatabase();
+                UpdateDatabase();
 
-            Settings.Default.firstStart = false;
-            Settings.Default.Save();
+                Settings.Default.firstStart = false;
+                Settings.Default.Save();
             }
 
             if (Settings.Default.saveLog)
@@ -3148,7 +3147,7 @@ namespace DaRT
                     writer = new StreamWriter("console.log", true, Encoding.Unicode);
                     writer.AutoFlush = true;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     this.Log("An error occured while accessing the log file.", LogType.Console, false);
                     this.Log(e.Message, LogType.Debug, false);
@@ -3171,7 +3170,7 @@ namespace DaRT
                 if (url != "")
                     Process.Start(url);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 this.Log(e.Message, LogType.Debug, false);
                 this.Log(e.StackTrace, LogType.Debug, false);
@@ -3525,7 +3524,7 @@ namespace DaRT
                             playerDBList.Items.Add(item);
                         }
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         this.Log(e.Message, LogType.Debug, false);
                         this.Log(e.StackTrace, LogType.Debug, false);
@@ -3618,7 +3617,7 @@ namespace DaRT
                             playerDBList.Items.Add(item);
                         }
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         this.Log(e.Message, LogType.Debug, false);
                         this.Log(e.StackTrace, LogType.Debug, false);

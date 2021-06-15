@@ -1,13 +1,10 @@
-﻿using System;
+﻿using BattleNET;
+using DaRT.Properties;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using BattleNET;
-using DaRT.Properties;
-using System.Threading;
 using System.Net;
-using System.Drawing;
-using System.Text;
+using System.Threading;
 
 namespace DaRT
 {
@@ -517,22 +514,22 @@ namespace DaRT
         public void scripts()
         {
             _client.SendCommand("loadScripts");
-            if(_form != null) _form.Log("Reloaded Scripts!", LogType.Console, false);
+            if (_form != null) _form.Log("Reloaded Scripts!", LogType.Console, false);
         }
         public void bans()
         {
             _client.SendCommand("loadBans");
-            if(_form != null) _form.Log("Reloaded Bans!", LogType.Console, false);
+            if (_form != null) _form.Log("Reloaded Bans!", LogType.Console, false);
         }
         public void events()
         {
             _client.SendCommand("loadEvents");
-            if(_form != null) _form.Log("Reloaded Events!", LogType.Console, false);
+            if (_form != null) _form.Log("Reloaded Events!", LogType.Console, false);
         }
         public void lockServer()
         {
             _client.SendCommand("#lock");
-            if(_form != null) _form.Log("Server is now locked!", LogType.Console, false);
+            if (_form != null) _form.Log("Server is now locked!", LogType.Console, false);
         }
         public void unlockServer()
         {

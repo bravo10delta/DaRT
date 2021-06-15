@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using Mono.Data.Sqlite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using Mono.Data.Sqlite;
+using System;
 using System.Windows.Forms;
 
 namespace DaRT
