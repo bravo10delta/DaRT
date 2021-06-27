@@ -221,5 +221,14 @@
     <Setting Name="showUnknownChat" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="MainState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="MainLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="MainSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1200, 610</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

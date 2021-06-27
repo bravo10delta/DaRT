@@ -899,5 +899,41 @@ namespace DaRT.Properties {
                 this["showUnknownChat"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState MainState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["MainState"]));
+            }
+            set {
+                this["MainState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point MainLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["MainLocation"]));
+            }
+            set {
+                this["MainLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1200, 610")]
+        public global::System.Drawing.Size MainSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MainSize"]));
+            }
+            set {
+                this["MainSize"] = value;
+            }
+        }
     }
 }

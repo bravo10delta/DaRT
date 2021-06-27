@@ -1022,6 +1022,19 @@ namespace DaRT
                 Settings.Default["refresh"] = autoRefresh.Checked;
                 Settings.Default["playerOrder"] = order;
                 Settings.Default["playerSizes"] = sizes;
+                Settings.Default.MainState = this.WindowState;
+                if (this.WindowState == FormWindowState.Normal)
+                {
+                    // save location and size if the state is normal
+                    Settings.Default.MainLocation = this.Location;
+                    Settings.Default.MainSize = this.Size;
+                }
+                else
+                {
+                    // save the RestoreBounds if the form is minimized or maximized
+                    Settings.Default.MainLocation = this.RestoreBounds.Location;
+                    Settings.Default.MainSize = this.RestoreBounds.Size;
+                }
                 Settings.Default.Save();
             }
             catch (Exception e)
@@ -3107,6 +3120,10 @@ namespace DaRT
 
         private void GUI_Load(object sender, EventArgs args)
         {
+            this.WindowState = Properties.Settings.Default.MainState;
+            if (this.WindowState == FormWindowState.Minimized) this.WindowState = FormWindowState.Normal;
+            this.Location = Properties.Settings.Default.MainLocation;
+            this.Size = Properties.Settings.Default.MainSize;
             InitializeSplitter();
             InitializeText();
             InitializeDatabase();
